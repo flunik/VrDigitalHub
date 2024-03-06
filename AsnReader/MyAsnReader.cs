@@ -1,17 +1,17 @@
-﻿using VRDigitalHubSeniorBackendTest.Entities;
+﻿using VRDigitalHubSeniorBackendTest.Db.Entities;
 
-namespace VRDigitalHubSeniorBackendTest;
+namespace VRDigitalHubSeniorBackendTest.AsnReader;
 
 /// <summary>
 /// my own simple asn reader implementation for the test file case
 /// </summary>
-public class MyAsnReader(string filePath)
+public class MyAsnReader() : IAsnReader
 {
   private static readonly char separator = ' ';
-  public const string HDR = "HDR";
-  public const string LINE = "LINE";
+  private const string HDR = "HDR";
+  private const string LINE = "LINE";
 
-  public async IAsyncEnumerable<Box> ReadBoxes()
+  public async IAsyncEnumerable<Box> ReadBoxes(string filePath)
   {
     using var file = new StreamReader(filePath);
 
@@ -88,5 +88,3 @@ public class MyAsnReader(string filePath)
     };
   }
 }
-
-internal class AsnReaderError(string message) : Exception(message: message);

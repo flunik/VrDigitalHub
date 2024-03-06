@@ -1,6 +1,6 @@
 ﻿// ReSharper disable EntityFramework.ModelValidation.UnlimitedStringLength
 
-namespace VRDigitalHubSeniorBackendTest.Entities;
+namespace VRDigitalHubSeniorBackendTest.Db.Entities;
 
 public class Box
 {
