@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using VRDigitalHubSeniorBackendTest;
 
-var dbContext = DbContextInMemoryMock.Instance; // this is a stub, so we won't build a container with db context etc in console app.
+var dbContext = DbContextFactory.CreateDbContext(); // this is a stub, so we won't build a container with db context etc in console app.
 string folderToMonitor = GetMonitorDirectoryPath(); // this is a stub, so it would select DirectoryToMonitor from the solution dir.
 
 var processor = new AsnProcessor(dbContext); // could be injected if containers are used in real-life scenario

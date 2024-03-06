@@ -8,6 +8,8 @@ namespace VRDigitalHubSeniorBackendTest;
 public class MyAsnReader(string filePath)
 {
   private static readonly char separator = ' ';
+  public const string HDR = "HDR";
+  public const string LINE = "LINE";
 
   public async IAsyncEnumerable<Box> ReadBoxes()
   {
@@ -17,7 +19,7 @@ public class MyAsnReader(string filePath)
 
     while (await file.ReadLineAsync() is { } line)
     {
-      if (line.StartsWith("HDR"))
+      if (line.StartsWith(HDR))
       {
         if (lines.Count > 0)
         {
@@ -41,11 +43,11 @@ public class MyAsnReader(string filePath)
 
     foreach (var line in lines)
     {
-      if (line.StartsWith("HDR"))
+      if (line.StartsWith(HDR))
       {
         box = ParseHeader(line);
       }
-      else if (line.StartsWith("LINE"))
+      else if (line.StartsWith(LINE))
       {
         box?.AddContent(ParseLine(line));
       }
